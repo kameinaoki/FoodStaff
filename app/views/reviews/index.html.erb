@@ -1,0 +1,33 @@
+<div class="title">
+  <h2>みんなのレビュー</h2>
+</div>
+
+<div class="reviews">
+  
+  <% @reviews.each do |review| %>
+    <div class="reviews_list">
+      
+      <!--評価点数-->
+      <h4>評価：<%= review.rate %>点</h4>
+      
+      <!--評価星-->
+      <div id="star-rate-<%= review.id %>"></div>
+        <script>
+          $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rate %>,
+          });
+        </script>
+      
+      <!--レビュータイトル-->
+      <p><%= review.title %></p>
+      
+    </div>
+  <% end %>
+  
+</div>

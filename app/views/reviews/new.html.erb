@@ -1,0 +1,48 @@
+<div class="title">
+  <h2>レビュー投稿する</h2>
+</div>
+
+<div class="form">
+  <%= form_with model:@review, url:reviews_path , local:true do |f| %>
+    <%= f.hidden_field :id, :value => @review.id %>
+
+    <!--タイトル-->
+    <div class="form-group">
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, autofocus: true %>
+    </div>
+
+
+    <!-- 評価 -->
+    <div class="form-group" id="star">
+      <%= f.label :rate, "評価" %>
+      <%= f.hidden_field :rate, id: :review_star %>
+      <!--star がポイント(jsを呼ぶ)-->
+    </div>
+
+    <!-- 評価javascript -->
+    <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      score: <%= review.rate %>,
+      half: true,
+    });
+    </script>
+
+
+    <!--レビュー内容-->
+    <div class="form-group">
+      <%= f.label :review_content, "レビュー内容" %>
+      <%= f.text_area :review_content %>
+    </div>
+
+    <!--投稿ボタン-->
+    <div class="form_group">
+      <%= f.submit "レビュー評価" %>
+    </div>
+
+  <% end %>
+</div>

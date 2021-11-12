@@ -1,0 +1,12 @@
+<div class="title">
+  <h2>みんなの投稿</h2>
+</div>
+
+<div class="recipes">
+  <% @recipes.each do |recipe| %>
+    <div class="recipes-list">
+      <p><%= recipe.cooking_name %></p>
+      <%= attachment_image_tag recipe, :recipe_image %>
+    </div>
+  <% end %>
+</div>

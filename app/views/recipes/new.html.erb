@@ -1,0 +1,29 @@
+<div class="title">
+  <h2>レシピを投稿</h2>
+</div>
+
+<div class="form">
+  <%= form_with model:@recipe, url:recipes_path, local:true do |f| %>
+    <%= f.hidden_field :id, :value => @recipe.id %>
+
+    <div class="form-group">
+      <h4>料理名</h4>
+      <%= f.text_field :cooking_name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.attachment_field :recipe_image %>
+    </div>
+
+    <div class="form-group">
+      <h4>調理工程</h4>
+      <%= f.text_field :recipe_content %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "投稿する" %>
+    </div>
+  <% end %>
+</div>
+
+
