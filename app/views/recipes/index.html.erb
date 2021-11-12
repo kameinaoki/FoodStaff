@@ -5,8 +5,29 @@
 <div class="recipes">
   <% @recipes.each do |recipe| %>
     <div class="recipes-list">
-      <p><%= recipe.cooking_name %></p>
-      <%= attachment_image_tag recipe, :recipe_image %>
+
+      <!--料理名-->
+      <div>
+        <%= link_to recipe_path (recipe.id) do %>
+          <!--料理名-->
+          <p><%= recipe.cooking_name %></p>
+          <!--料理画像-->
+          <p><%= attachment_image_tag recipe, :recipe_image %></p>
+        <% end %>
+      </div>
+
+      </p>
+      <!--いいねボタン-->
+      <% if recipe.favorited_by?(current_user) %>
+        <p>
+          ♥<%= recipe.favorites.count %> いいね
+        </p>
+      <% else %>
+        <p>
+            ♡<%= recipe.favorites.count %> いいね
+        </p>
+      <% end %>
+
     </div>
   <% end %>
 </div>

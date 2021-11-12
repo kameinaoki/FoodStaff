@@ -3,7 +3,28 @@
 </div>
 
 <div class="recipe">
+  
+  <!--料理名-->
   <p><%= @recipe.cooking_name %></p>
+  
+  <!--イメージ画像-->
   <p><%= attachment_image_tag @recipe, :recipe_image %></p>
+  
   <p><%= @recipe.recipe_content %></p>
+  
+  <!--いいねボタン-->
+  <% if @recipe.favorited_by?(current_user) %>
+    <p>
+      <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
+        ♥<%= @recipe.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to recipe_favorites_path(@recipe), method: :post do %>
+        ♡<%= @recipe.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+  
 </div>

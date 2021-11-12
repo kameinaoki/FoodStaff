@@ -5,9 +5,14 @@ Rails.application.routes.draw do
   
   root to: 'homes#top'
   resources :users, only: [:index, :show, :edit, :update, :destroy]
-  resources :recipes, only: [:new, :create, :index, :show, :destroy]
-  resources :recipe_comments, only: [:new, :create, :index, :show, :destroy]
-  resources :reviews, only: [:new, :create, :index, :show, :destroy]
+  
+  resources :recipes, only: [:new, :create, :index, :show, :destroy] do
+    resource :favorites, only: [:create, :index, :destroy]
+    resources :recipe_comments, only: [:new, :create, :destroy]
+  end
+    
+  resources :reviews, only: [:create, :index, :show, :destroy]
+  
   resources :items, only: [:index, :show, :destroy]
   
 
