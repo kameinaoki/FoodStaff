@@ -6,6 +6,11 @@
   <% @recipes.each do |recipe| %>
     <div class="recipes-list">
       
+      <!--投稿ユーザー-->
+      <div>
+        <%= recipe.user.name %>
+      </div>
+
       <!--料理名-->
       <div>
         <%= link_to recipe_path (recipe.id) do %>
@@ -16,7 +21,7 @@
         <% end %>
       </div>
       
-      <!--いいねボタン-->
+      <!--いいね数-->
       <div>
         <% if recipe.favorited_by?(current_user) %>
           <p>

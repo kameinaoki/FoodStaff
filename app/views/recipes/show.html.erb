@@ -3,9 +3,12 @@
 </div>
 
 <div class="recipe">
+  
+  <!--投稿ユーザー名-->
+  <p><%= @recipe.user.name %></p>
 
   <!--料理名-->
-  <p><%= @recipe.cooking_name %></p>
+  <p><strong><%= @recipe.cooking_name %></strong>0</p>
 
   <!--イメージ画像-->
   <p><%= attachment_image_tag @recipe, :recipe_image %></p>

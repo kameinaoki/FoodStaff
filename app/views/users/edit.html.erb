@@ -1,1 +1,18 @@
-<h2>ユーザー情報</h2>
+<div class="title">
+  <h2>ユーザー情報</h2>
+</div>
+
+<div class="form">
+  <%= form_with model:@user, url:user_path, local:true do |f| %>
+  
+    <!--ユーザー名-->
+    <div class="form_group">
+      <%= f.label :name, "ユーザー名" %>
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+    
+    <div class="form_group">
+      
+    </div>
+  <% end %>
+</div>

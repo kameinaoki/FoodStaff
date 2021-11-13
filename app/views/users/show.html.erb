@@ -1,1 +1,25 @@
-<h2>ユーザー詳細ページ</h2>
+<div class="title">
+  <h2>ユーザー詳細ページ</h2>
+</div>
+
+
+<!--ユーザー情報-->
+<div class="user-information">
+  <p><%= @user.name %></p>
+　
+　<!--編集するボタン-->
+　<% if @user.id == current_user.id %>
+　  <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-outline-success" %>
+　<% end %>
+</div>
+
+<!--投稿レシピ一覧-->
+<div class="recipes">
+  <div class="recipes-list">
+    <% @recipes.each do |recipe| %>
+      <p><strong><%= recipe.cooking_name %></strong></p>
+      <p><%= attachment_image_tag recipe, :recipe_image %></p>
+      <p><%= recipe.recipe_content %></p>
+    <% end %>
+  </div>
+</div>
