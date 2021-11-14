@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   
   # ユーザー
-  resources :users, only: [:index, :show, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
 
   # レシピ
   resources :recipes, only: [:new, :create, :index, :show, :destroy] do
@@ -16,16 +20,13 @@ Rails.application.routes.draw do
   end
 
   # レビュー
-  resources :reviews, only: [:create, :index, :show, :destroy]
+  resources :reviews, only: [:new, :create, :index, :show, :destroy]
 
   # 商品
   resources :items, only: [:index, :show, :destroy]
   
   # お問い合わせ
   resources :contacts, only: [:new, :create]
-  # get 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
-  # post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
-  # post 'contacts/back', to: 'contacts#back', as: 'back'
   get 'done', to: 'contacts#done', as: 'done'
 
 
