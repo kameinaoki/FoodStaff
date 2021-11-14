@@ -1,18 +1,18 @@
-<% if users.exists? %>
-  <% users.each do |user| %>
-    <table>
+<% if @users.exists? %>
+  <% @users.each do |user| %>
+    <table class="table">
       <thead>
         <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
+          <th scope="col">ユーザー名</th>
+          <th scope="col">レシピ投稿数</th>
+          <th scope="col">レビュー投稿数</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= user.name %></td>
-          <td>フォロー数: <%= user.followings.count %></td>
-          <td>フォロワー数: <%= user.followers.count %></td>
+          <td><%= user.recipes.count %> 件</td>
+          <td><%= user.reviews.count %> 件</td>
         </tr>
       </tbody>
     </table>

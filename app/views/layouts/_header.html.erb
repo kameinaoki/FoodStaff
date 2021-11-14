@@ -1,19 +1,50 @@
 <header style="background-color: #cab64a;">
   
-  <div class="title">ヘッダー</div>
+  <div class="title"><h2>Food Staff</h2></div>
   
     <ul class="nav">
       <li class="nav-item", style="margin: 5px;">
-        <%= link_to "レシピを投稿する", new_recipe_path %>
+        <%= link_to "トップページ", root_path %>
       </li>
+      
+      <li class="nav-item", style="margin: 5px; border: 1px solid #000000;">
+        <%= link_to "みんなのレシピ", recipes_path %>
+      </li>
+        
       <li class="nav-item", style="margin: 5px;">
-        <%= link_to "商品レビューをする", new_review_path %>
+        <%= link_to "みんなのレビュー", reviews_path %>
       </li>
+        
       <li class="nav-item", style="margin: 5px;">
-        <%= link_to "マイページ", user_path(current_user) %>
+        <%= link_to "ユーザー一覧", users_path %>
       </li>
+      
+      <% if user_signed_in? %>
+        <li class="nav-item", style="margin: 5px;">
+          <%= link_to "レシピを投稿する", new_recipe_path %>
+        </li>
+        
+        <li class="nav-item", style="margin: 5px;">
+          <%= link_to "商品レビューをする", new_review_path %>
+        </li>
+        
+        <li class="nav-item", style="margin: 5px;">
+          <%= link_to "マイページ", user_path(current_user) %>
+        </li>
+        
+        <li class="nav-item", style="margin: 5px;">
+          <%= link_to "ログアウトする", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>  
+        <li class="nav-item", style="margin: 5px;">
+          <%= link_to "ログインする", new_user_session_path %>
+        </li>
+        
+        <li class="nav-item", style="margin: 5px;">
+          <%= link_to "新規登録する", new_user_registration_path %>
+        </li>
+      <% end %>
     </ul>
-  
   
   
 </header>
