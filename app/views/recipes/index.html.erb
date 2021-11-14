@@ -2,6 +2,18 @@
   <h2>みんなの投稿</h2>
 </div>
 
+<!--検索フォーム-->
+<div class="search">
+  <h4>レシピ検索</h4>
+  <%= search_form_for @q, url: search_recipes_path do |f| %>
+    <%= f.label :cooking_name_cont, '料理を探す' %>
+    <%= f.search_field :cooking_name_cont %>
+    <br>
+    <%= f.submit '検索' %>
+  <% end %>
+</div>
+
+
 <div class="recipes">
   <% @recipes.each do |recipe| %>
     <div class="recipes-list">

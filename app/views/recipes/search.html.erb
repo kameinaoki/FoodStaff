@@ -1,0 +1,14 @@
+<div class="title">
+  <h2>検索結果</h2>
+</div>
+
+<div class="recipes">
+  <% @results.each do |recipe| %>
+    <%= link_to recipe_path (recipe.id) do %>
+      <!--料理名-->
+      <p><%= recipe.cooking_name %></p>
+      <!--料理画像-->
+      <p><%= attachment_image_tag recipe, :recipe_image %></p>
+    <% end %>
+  <% end %>
+</div>

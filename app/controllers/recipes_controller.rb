@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :set_q, only: [:index, :search]
 
   def new
     @recipe = Recipe.new
@@ -32,8 +33,16 @@ class RecipesController < ApplicationController
   def destroy
   end
 
-
+  def search
+    @results = @q.result
+  end
+  
+  
   private
+  
+  def set_q
+    @q = Recipe.ransack(params[:q])
+  end
 
   def recipe_params
     params.require(:recipe).permit(:cooking_name, :recipe_image, :recipe_content)
