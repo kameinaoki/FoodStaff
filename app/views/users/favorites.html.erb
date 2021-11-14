@@ -1,0 +1,12 @@
+<div class="title">
+  <h2>いいねした投稿一覧</h2>
+</div>
+
+<div class="favorites">
+  <% @favorite_recipes.each do |favorite_recipe| %>
+    <%= link_to recipe_path(favorite_recipe) do %>
+      <%= favorite_recipe.cooking_name %>
+      <%= attachment_image_tag favorite_recipe, :recipe_image %>
+    <% end %>
+  <% end %>
+</div>

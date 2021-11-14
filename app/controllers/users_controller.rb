@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:favorites]
 
   def index
     @users = User.all
@@ -22,10 +23,20 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def favorites
+    favorites = Favorite.where(user_id: @user.id).pluck(:recipe_id)
+    @favorite_recipes = Recipe.find(favorites)
+  end
+
 
   private
+  
   def user_params
     params.require(:user).permit(:name, :profile_image)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end
