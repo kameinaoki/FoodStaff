@@ -8,7 +8,7 @@
   <p><%= @recipe.user.name %></p>
 
   <!--料理名-->
-  <p><strong><%= @recipe.cooking_name %></strong>0</p>
+  <p><strong><%= @recipe.cooking_name %></strong></p>
 
   <!--イメージ画像-->
   <p><%= attachment_image_tag @recipe, :recipe_image %></p>
@@ -16,19 +16,9 @@
   <p><%= @recipe.recipe_content %></p>
 
   <!--いいねボタン-->
-  <% if @recipe.favorited_by?(current_user) %>
-    <p>
-      <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
-        ♥<%= @recipe.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% else %>
-    <p>
-      <%= link_to recipe_favorites_path(@recipe), method: :post do %>
-        ♡<%= @recipe.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+  <div  id="favorite_buttons_<%= @recipe.id %>">
+    <%= render "favorites/favorite", recipe: @recipe %>
+  </div>
 
 </div>
 

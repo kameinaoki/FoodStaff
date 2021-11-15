@@ -34,17 +34,9 @@
       </div>
       
       <!--いいね数-->
-      <div>
-        <% if recipe.favorited_by?(current_user) %>
-          <p>
-            ♥<%= recipe.favorites.count %> いいね
-          </p>
-        <% else %>
-          <p>
-            ♡<%= recipe.favorites.count %> いいね
-          </p>
-        <% end %>
-      </div>
+      <span id="favorite_buttons_<%= recipe.id %>">
+        <%= render "favorites/favorite", recipe: recipe %>
+      </span>
       
       <!--コメント件数-->
       <div>
