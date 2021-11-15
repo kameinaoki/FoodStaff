@@ -10,6 +10,13 @@
   <p><%= @user.name %></p>
   <!--ユーザー画像-->
   <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg" %>
+  
+  <!--自己紹介-->
+  <p>
+    自己紹介<br />
+    <%= @user.introduction %>
+  </p>
+  
   <!--フォロー数-->
   <p>
     <%= link_to user_followings_path(@user) do %>

@@ -3,13 +3,13 @@
 </div>
 
 <div class="recipe">
-  
+
   <!--料理名-->
   <p><strong><%= @recipe.cooking_name %></strong></p>
 
   <!--イメージ画像-->
   <p><%= attachment_image_tag @recipe, :recipe_image %></p>
-  
+
   <!--調理工程-->
   <p><%= @recipe.recipe_content %></p>
 
@@ -17,7 +17,7 @@
   <div  id="favorite_buttons_<%= @recipe.id %>">
     <%= render "favorites/favorite", recipe: @recipe %>
   </div>
-    
+
   <!--投稿ユーザー名-->
   <%= link_to user_path() do %>
     <%= @recipe.user.name %>
