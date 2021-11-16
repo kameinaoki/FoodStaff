@@ -6,12 +6,18 @@
   <%= form_with model:@review, url:reviews_path , local:true do |f| %>
     <%= f.hidden_field :id, :value => @review.id %>
 
+     <!--商品画像-->
+    <div class="form-group">
+      <%= f.label :review_image, "商品画像" %>
+      <%= f.attachment_field :review_image %>
+    </div>
+    
     <!--タイトル-->
     <div class="form-group">
-      <%= f.label :title, "タイトル" %>
+      <%= f.label :title, "商品名" %>
       <%= f.text_field :title, autofocus: true %>
     </div>
-
+    
     <!-- 評価 -->
     <div class="form-group" id="star">
       <%= f.label :rate, "評価" %>

@@ -4,6 +4,11 @@
 
 <div class="review">
   
+  <!--商品名-->
+  <p><%= @review.title %></p>
+  <!--商品画像-->
+  <%= attachment_image_tag @review, :review_image %>
+  
   <!--評価点数-->
   <p>評価：<%= @review.rate %>点</p>
   
@@ -20,9 +25,6 @@
         score: <%= @review.rate %>,
       });
     </script>
-
-  <!--タイトル-->
-  <p><%= @review.title %></p>
   
   <!--レビュー内容-->
   <p><%= @review.review_content %></p>

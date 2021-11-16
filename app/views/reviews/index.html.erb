@@ -3,13 +3,19 @@
 </div>
 
 <div class="reviews">
-  
+
   <% @reviews.each do |review| %>
     <div class="reviews_list">
-      
+      <%= link_to review_path(review) do%> 
+        <!--レビュータイトル-->
+        <h4><%= review.title %></h4>
+        <!--商品画像-->
+        <%= attachment_image_tag review, :review_image, :fill, 100, 100 %>
+      <% end %>
+
       <!--評価点数-->
       <h4>評価：<%= review.rate %>点</h4>
-      
+
       <!--評価星-->
       <div id="star-rate-<%= review.id %>"></div>
         <script>
@@ -23,11 +29,10 @@
             score: <%= review.rate %>,
           });
         </script>
-      
-      <!--レビュータイトル-->
-      <p><%= review.title %></p>
-      
+
+      <p><%= review.review_content %></p>
+
     </div>
   <% end %>
-  
+
 </div>

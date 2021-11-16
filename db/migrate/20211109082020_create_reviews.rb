@@ -3,9 +3,10 @@ class CreateReviews < ActiveRecord::Migration[5.2]
     create_table :reviews do |t|
       t.integer :item_id
       t.integer :user_id
-      t.string :title
-      t.text :review_content
-      t.float :rate
+      t.string :title,           null: false
+      t.string :review_image_id, null: false
+      t.text :review_content,    null: false
+      t.float :rate,             null: false
 
       t.timestamps
     end
