@@ -19,6 +19,15 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on('turbolinks:load', function() {
+
+  $(window).on('load resize', function() {
+    var height = $("#header").height()
+    $("body").css("padding-top", height + "px");
+  });
+
+});
+
 // レビュー機能の星
 /*!
  * Raty - A Star Rating Plugin
