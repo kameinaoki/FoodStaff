@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_comment = RecipeComment.new
-    @recipe_comments = RecipeComment.all
+    @recipe_comments = RecipeComment.all.order(created_at: :desc)
   end
 
   def edit
