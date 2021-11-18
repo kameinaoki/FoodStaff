@@ -1,7 +1,7 @@
 <div class="container">
-  <h2>Food Staff へようこそ！</h2>
+  <h2 class="text-center">Food Staff へようこそ！</h2>
   
-  <div class="card mb-3" style="width: 18rem;">
+  <div class="card mb-3" style="width: 18rem; padding: 10px;">
     <% @all_ranks.each do |recipe| %>
     
         <%= link_to recipe_path(recipe.id) do %>

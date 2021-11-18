@@ -1,38 +1,49 @@
-<div class="title">
-  <h2>みんなのレビュー</h2>
-</div>
+<div class="container">
+  <h2 class="text-center">みんなのレビュー</h2>
+  
+  <hr/>
 
-<div class="reviews">
-
-  <% @reviews.each do |review| %>
-    <div class="reviews_list">
-      <%= link_to review_path(review) do%> 
-        <!--レビュータイトル-->
-        <h4><%= review.title %></h4>
-        <!--商品画像-->
-        <%= attachment_image_tag review, :review_image, :fill, 100, 100 %>
-      <% end %>
-
-      <!--評価点数-->
-      <h4>評価：<%= review.rate %>点</h4>
-
-      <!--評価星-->
-      <div id="star-rate-<%= review.id %>"></div>
-        <script>
-          $('#star-rate-<%= review.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= review.rate %>,
-          });
-        </script>
-
-      <p><%= review.review_content %></p>
-
-    </div>
-  <% end %>
-
+  <div class="reviews">
+    <% @reviews.each do |review| %>
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <!--商品画像-->
+            <%= link_to review_path(review) do %>
+              <%= attachment_image_tag review, :review_image, class: 'recipe-card-img' %>
+            <% end %>
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <h5 class="card-title">
+                <!--レビュータイトル-->
+                <%= link_to review_path(review) do %> 
+                  <h4><%= review.title %></h4>
+                <% end %>
+              </h5>
+              <!--評価点数-->
+              <p class="card-text">評価：<%= review.rate %>点</p>
+              <!--評価星-->
+              <p class="card-text">
+                <div id="star-rate-<%= review.id %>"></div>
+                  <script>
+                    $('#star-rate-<%= review.id %>').raty({
+                      size: 36,
+                      starOff:  '<%= asset_path('star-off.png') %>',
+                      starOn : '<%= asset_path('star-on.png') %>',
+                      starHalf: '<%= asset_path('star-half.png') %>',
+                      half: true,
+                      readOnly: true,
+                      score: <%= review.rate %>,
+                    });
+                  </script>
+              </p>
+              <!--投稿ユーザー-->
+              <p class="card-text"><small class="text-muted">投稿ユーザー：<%= review.user.name %></small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

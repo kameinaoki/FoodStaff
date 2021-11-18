@@ -1,48 +1,64 @@
-<div class="title">
-  <h2>レシピ詳細</h2>
-</div>
+<div class="container">
+  <h2 class="text-center">レシピ詳細</h2>
 
-<div class="recipe">
+  <hr/>
 
-  <!--料理名-->
-  <p><strong><%= @recipe.cooking_name %></strong></p>
-
-  <!--イメージ画像-->
-  <p><%= attachment_image_tag @recipe, :recipe_image %></p>
-
-  <!--調理工程-->
-  <p><%= @recipe.recipe_content %></p>
-
-  <!--いいねボタン-->
-  <div  id="favorite_buttons_<%= @recipe.id %>">
-    <%= render "favorites/favorite", recipe: @recipe %>
+  <div class="row">
+    <div class="card col-md-8 mx-auto">
+      <!--イメージ画像-->
+      <%= attachment_image_tag @recipe, :recipe_image, class: 'recipe-card-img' %>
+  
+      <div class="card-body">
+        <!--料理名-->
+        <p class="card-text text-center"><strong><%= @recipe.cooking_name %></strong></p>
+        <hr/>
+        
+        <!--調理工程-->
+        <p class="card-text"><%= @recipe.recipe_content %></p>
+        <hr/>
+        
+        <!--いいね-->
+        <p class="card-text">
+          <div  id="favorite_buttons_<%= @recipe.id %>">
+            <%= render "favorites/favorite", recipe: @recipe %>
+          </div>
+        </p>
+        
+        
+        <!--投稿ユーザー名-->
+        <p class="card-text"><small class="text-muted">投稿ユーザー：
+          <%= link_to user_path(@recipe.user_id) do %>
+            <%= @recipe.user.name %>
+          <% end %>
+        </small></p>
+      </div>
+    </div>
   </div>
+  
+  <hr/>
 
-  <!--投稿ユーザー名-->
-  <%= link_to user_path() do %>
-    <%= @recipe.user.name %>
-  <% end %>
-
-</div>
-
-<!--コメント投稿機能-->
-<div class="new-comment">
-  <%= form_with model:[@recipe, @recipe_comment], local: true do |f| %>
-    <%= f.text_area :comment_content, rows:'3', placeholder: "コメント欄" %>
-    <%= f.submit "コメントする" %>
-  <% end %>
-</div>
-
-
-<div class="comments">
-  <!--コメント数-->
-  <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
-
-  <!--コメント一覧-->
-  <% @recipe.recipe_comments.each do |recipe_comment| %>
-    <p><%= attachment_image_tag @user, :profile_image %></p>
-    <%= recipe_comment.user.name %>
-    <%= recipe_comment.created_at.strftime('%Y/%m/%d') %>
-    <%= recipe_comment.comment_content %>
-  <% end %>
+  <!--コメント投稿機能-->
+  <h4 class="text-center mt-5 mb-5"><strong>－みんなのコメント－</strong></h4>
+  <div class="row mx-auto">
+    <div class="col-md-3 offset-md-1">
+      <%= form_with model:[@recipe, @recipe_comment], local: true do |f| %>
+        <%= f.text_area :comment_content, rows:'3', placeholder: "コメント欄", class: 'recipe-card-img' %>
+        <p><%= f.submit "コメントする" %></p>
+      <% end %>
+    </div>
+  
+    <div class="col-md-7 offset-md-1">
+      <!--コメント数-->
+      <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
+      <hr/>
+  
+      <!--コメント一覧-->
+      <% @recipe.recipe_comments.each do |recipe_comment| %>
+        <p><%= attachment_image_tag @user, :profile_image %></p>
+        <%= recipe_comment.user.name %>
+        <%= recipe_comment.created_at.strftime('%Y/%m/%d') %>
+        <%= recipe_comment.comment_content %>
+      <% end %>
+    </div>
+  </div>
 </div>

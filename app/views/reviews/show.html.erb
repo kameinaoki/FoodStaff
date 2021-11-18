@@ -1,32 +1,50 @@
-<div class="title">
-  <h2>レビュー詳細</h2>
+<div class="container">
+  <h2 class="text-center">レビュー詳細</h2>
+
+  <hr/>
+
+  <div class="row">
+    <div class="card col-md-8 mx-auto">
+      <!--商品画像-->
+      <%= attachment_image_tag @review, :review_image, class: 'recipe-card-img' %>
+  
+      <div class="card-body">
+        <!--商品名-->
+        <p class="card-text text-center"><strong><%= @review.title %></strong></p>
+        <hr/>
+        
+        <!--評価点数-->
+        <p class="card-text">評価：<%= @review.rate %>点</p>
+        <hr/>
+        
+        <!--評価星-->
+        <p class="card-text">
+          <div id="star-rate-<%= @review.id %>"></div>
+            <script>
+              $('#star-rate-<%= @review.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= @review.rate %>,
+              });
+            </script>
+        </p>
+        
+        <!--レビュー内容-->
+        <p class="card-text"><%= @review.review_content %></p>
+        
+        <!--投稿ユーザー名-->
+        <p class="card-text"><small class="text-muted">投稿ユーザー：
+          <%= link_to user_path(@review.user_id) do %>
+            <%= @review.user.name %>
+          <% end %>
+        </small></p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<div class="review">
-  
-  <!--商品名-->
-  <p><%= @review.title %></p>
-  <!--商品画像-->
-  <%= attachment_image_tag @review, :review_image %>
-  
-  <!--評価点数-->
-  <p>評価：<%= @review.rate %>点</p>
-  
-  <!--評価星-->
-  <div id="star-rate-<%= @review.id %>"></div>
-    <script>
-      $('#star-rate-<%= @review.id %>').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        half: true,
-        readOnly: true,
-        score: <%= @review.rate %>,
-      });
-    </script>
-  
-  <!--レビュー内容-->
-  <p><%= @review.review_content %></p>
-  
-</div>

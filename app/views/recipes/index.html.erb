@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>みんなの投稿</h2>
+  <h2 class="text-center">みんなのレシピ</h2>
 
   <hr/>
 
@@ -24,7 +24,7 @@
       <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <%= link_to recipe_path (recipe.id) do %>
+            <%= link_to recipe_path(recipe) do %>
               <%= attachment_image_tag recipe, :recipe_image, class: 'recipe-card-img' %>
             <% end %>
           </div>
