@@ -1,56 +1,88 @@
-<div class="title">
-  <h2>ユーザー詳細ページ</h2>
-</div>
+<div class="container">
+  <h2 class="text-center">ユーザー詳細ページ</h2>
 
-
-<!--ユーザー情報-->
-<div class="user-information">
+  <hr/>
   
-  <!--ユーザー名-->
-  <p><%= @user.name %></p>
-  <!--ユーザー画像-->
-  <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg" %>
-  
-  <!--自己紹介-->
-  <p>
-    自己紹介<br />
-    <%= @user.introduction %>
-  </p>
-  
-  <!--フォロー数-->
-  <p>
-    <%= link_to user_followings_path(@user) do %>
-      フォロー：<%= @user.followings.count %>
+  <!--ユーザー情報-->
+  <div class="user-information">
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+            <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", class: 'recipe-card-img' %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= @user.name %></h5>
+            <p class="card-text">
+              ～自己紹介～<br />
+              <%= @user.introduction %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    <% if current_user.following?(@user) %>
+      <%= link_to "フォロー外す", user_relationships_path(@user), class: "btn btn-danger", method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(@user), class: "btn btn-primary", method: :post %>
     <% end %>
-  </p>
-  <!--フォロワー数-->
-  <p>
-    <%= link_to user_followers_path(@user) do %>
-      フォロワー：<%= @user.followers.count %>
-    <% end %>
-  </p>
+    <!--フォロー数-->
+    <p>
+      <%= link_to user_followings_path(@user) do %>
+        フォロー数：<%= @user.followings.count %>人
+      <% end %>
+    </p>
+    <!--フォロワー数-->
+    <p>
+      <%= link_to user_followers_path(@user) do %>
+        フォロワー数：<%= @user.followers.count %>人
+      <% end %>
+    </p>
+    
+    <%= link_to "いいねした投稿", favorites_user_path(@user) %>
+    
+    
+  　<!--編集するボタン-->
+  　<% if @user.id == current_user.id %>
+  　  <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-success" %>
+  　<% end %>
+  </div>
   
-  <%= link_to "いいねした投稿", favorites_user_path(@user) %>
+  <hr/>
+  <hr/>
   
-  <% if current_user.following?(@user) %>
-    <%= link_to "フォロー外す", user_relationships_path(@user), class: "btn btn-primary", method: :delete %>
-  <% else %>
-    <%= link_to "フォローする", user_relationships_path(@user), class: "btn btn-primary", method: :post %>
-  <% end %>
-　
-　<!--編集するボタン-->
-　<% if @user.id == current_user.id %>
-　  <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-success" %>
-　<% end %>
-</div>
-
-<!--投稿レシピ一覧-->
-<div class="recipes">
-  <div class="recipes-list">
+  <!--投稿レシピ一覧-->
+  <h4 class="text-center">投稿したレシピ</h4>
     <% @recipes.each do |recipe| %>
-      <p><strong><%= recipe.cooking_name %></strong></p>
-      <p><%= attachment_image_tag recipe, :recipe_image %></p>
-      <p><%= recipe.recipe_content %></p>
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <%= link_to recipe_path(recipe) do %>
+              <%= attachment_image_tag recipe, :recipe_image, class: 'recipe-card-img' %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= link_to recipe_path (recipe) do %>
+                  <p><%= recipe.cooking_name %></p>
+                <% end %>
+              </h5>
+              <p class="card-text"><%= recipe.recipe_content %></p>
+              <p class="card-text">
+                <span id="favorite_buttons_<%= recipe.id %>">
+                  <%= render "favorites/favorite", recipe: recipe %>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
+
 </div>
