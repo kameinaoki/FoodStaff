@@ -2,52 +2,64 @@
 
   <h2 class="app-title text-center p-3">Food Staff</h2>
 
-    <ul class="nav">
-      <li class="nav-item", style="margin: 5px;">
-        <%= link_to "トップページ", root_path %>
-      </li>
+    
+    <!--ログインしている場合-->
+    <% if user_signed_in? %>
+      <div style="margin: 10px; text-align: right;">
+        ようこそ、<%= current_user.name %> さん！
+      </div>
+      
+      <div class="row">
+        <div class="col my-2">
+          <%= link_to "レシピを投稿する", new_recipe_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+        
+        <div class="col my-2">
+          <%= link_to "レビューを投稿する", new_review_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+        
+        <div class="col my-2">
+          <%= link_to "マイページ", user_path(current_user), class: "btn btn-outline-secondary btn-block" %>
+        </div>
+      </div>
 
-      <!--ログインしている場合-->
-      <% if user_signed_in? %>
-        <li class="nav-item", style="margin: 5px; border: 1px solid #000000;">
-          <%= link_to "みんなのレシピ", recipes_path %>
-        </li>
+      <div class="row">
+        <div class="col my-2">
+          <%= link_to "トップページ", root_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+        
+        <div class="col my-2">
+          <%= link_to "みんなのレシピ", recipes_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+        
+        <div class="col my-2">
+          <%= link_to "みんなのレビュー", reviews_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+        
+        <div class="col my-2">
+          <%= link_to "ユーザー一覧", users_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+        
+        <div class="col my-2">
+          <%= link_to "ログアウトする", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+      </div>
 
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "みんなのレビュー", reviews_path %>
-        </li>
+    <!--ログインしていない場合-->
+    <% else %>
+      <div class="row">
+        <div class="col my-2">
+          <%= link_to "トップページ", root_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
 
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "ユーザー一覧", users_path %>
-        </li>
-
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "レシピを投稿する", new_recipe_path %>
-        </li>
-
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "レビューを投稿する", new_review_path %>
-        </li>
-
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "マイページ", user_path(current_user) %>
-        </li>
-
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "ログアウトする", destroy_user_session_path, method: :delete %>
-        </li>
-
-      <!--ログインしていない場合-->
-      <% else %>
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "ログインする", new_user_session_path %>
-        </li>
-
-        <li class="nav-item", style="margin: 5px;">
-          <%= link_to "新規登録する", new_user_registration_path %>
-        </li>
-      <% end %>
-    </ul>
-
-
+        <div class="col my-2">
+          <%= link_to "ログインする", new_user_session_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+  
+        <div class="col my-2">
+          <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-outline-secondary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+  
 </header>

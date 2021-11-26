@@ -1,5 +1,7 @@
 class RecipeCommentsController < ApplicationController
   
+  before_action :authenticate_user!
+  
   def create
     recipe = Recipe.find(params[:recipe_id])
     recipe_comment = RecipeComment.new(recipe_comment_params)

@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_q, only: [:index, :search]
 
   def new

@@ -4,7 +4,7 @@
   <hr/>
   
   <div class="recipes">
-    <h4 class="text-center">★人気トップ５★</h4>
+    <h4 class="mt-5 text-center">★人気トップ５★</h4>
     <% @all_ranks.each do |recipe| %>
       <div class="card mb-3">
         <div class="row no-gutters">
@@ -21,10 +21,17 @@
                 <% end %>
               </h5>
               <p class="card-text">
+                <!--ログインしている場合-->
+                <% if user_signed_in? %>
                 <span id="favorite_buttons_<%= recipe.id %>">
                   <%= render "favorites/favorite", recipe: recipe %>
                 </span>
+                <!--ログインしていない場合-->
+                <% else %>
+                  ♡<%= recipe.favorites.count %> いいね
+                <% end %>
               </p>
+              <br />
               <p class="card-text"><small class="text-muted">投稿ユーザー：<%= recipe.user.name %></small></p>
               <p class="card-text">コメント件数：<%= recipe.recipe_comments.count %></p>
             </div>
