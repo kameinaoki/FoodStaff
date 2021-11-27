@@ -7,24 +7,24 @@
     <div class="card col-md-8 mx-auto">
       <!--イメージ画像-->
       <%= attachment_image_tag @recipe, :recipe_image, class: 'recipe-card-img' %>
-  
+
       <div class="card-body">
         <!--料理名-->
         <p class="card-text text-center"><strong><%= @recipe.cooking_name %></strong></p>
         <hr/>
-        
+
         <!--調理工程-->
         <p class="card-text"><%= @recipe.recipe_content %></p>
         <hr/>
-        
+
         <!--いいね-->
         <p class="card-text">
           <div  id="favorite_buttons_<%= @recipe.id %>">
             <%= render "favorites/favorite", recipe: @recipe %>
           </div>
         </p>
-        
-        
+
+
         <!--投稿ユーザー名-->
         <p class="card-text"><small class="text-muted">投稿ユーザー：
           <%= link_to user_path(@recipe.user_id) do %>
@@ -34,7 +34,7 @@
       </div>
     </div>
   </div>
-  
+
   <hr/>
 
   <!--コメント投稿機能-->
@@ -46,14 +46,14 @@
         <p><%= f.submit "コメントする" %></p>
       <% end %>
     </div>
-  
+
     <div class="col-md-7 offset-md-1">
       <!--コメント数-->
       <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
       <hr/>
-  
+
       <!--コメント一覧-->
-      <% @recipe.recipe_comments.each do |recipe_comment| %>
+      <% @recipe_comments.each do |recipe_comment| %>
         <p><%= attachment_image_tag @user, :profile_image %></p>
         <%= recipe_comment.user.name %>
         <%= recipe_comment.created_at.strftime('%Y/%m/%d') %>

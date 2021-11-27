@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_comment = RecipeComment.new
-    @recipe_comments = RecipeComment.all.order(created_at: :desc)
+    @recipe_comments = @recipe.recipe_comments.order(created_at: :desc)
   end
 
   def edit
@@ -40,10 +40,10 @@ class RecipesController < ApplicationController
   def search
     @results = @q.result
   end
-  
-  
+
+
   private
-  
+
   def set_q
     @q = Recipe.ransack(params[:q])
   end
