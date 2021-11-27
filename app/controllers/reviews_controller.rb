@@ -10,8 +10,12 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     # byebug
-    @review.save
-    redirect_to reviews_path
+    if @review.save
+      redirect_to reviews_path, notice: 'レビューが投稿されました'
+    else
+      flash.now[:alert] = '－投稿に失敗しました－'
+      render :new
+    end
   end
   
   def index

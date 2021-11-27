@@ -11,8 +11,9 @@ class RecipesController < ApplicationController
     @recipe.user_id = current_user.id
     #byebug
     if @recipe.save
-      redirect_to recipe_path(@recipe.id)
+      redirect_to recipe_path(@recipe.id), notice: 'レシピが投稿されました'
     else
+      flash.now[:alert] = '－投稿に失敗しました－'
       render :new
     end
   end

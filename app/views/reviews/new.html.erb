@@ -2,6 +2,15 @@
   <h2 class="text-center">レビュー投稿する</h2>
   
   <hr/>
+  
+  <div>
+    <p class="text-center text-muted"><%= flash[:alert] %></p>
+    <!--<p>-->
+    <!--  <% if @review.errors.any? %>-->
+    <!--    <%= @review.errors.count %>箇所、入力ミスがあるようです-->
+    <!--  <% end %>-->
+    <!--</p>-->
+  </div>
 
   <div class="form">
     <%= form_with model:@review, url:reviews_path , local:true do |f| %>

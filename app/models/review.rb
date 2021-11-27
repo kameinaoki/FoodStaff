@@ -1,13 +1,16 @@
 class Review < ApplicationRecord
-  
+
   attachment :review_image
-  
+
   belongs_to :user
   # belongs_to :item
-  
+
+  validates :title, presence: true
+  validates :review_image, presence: true
+  validates :review_content, presence: true
   validates :rate, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1
   }, presence: true
-  
+
 end

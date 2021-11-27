@@ -23,9 +23,9 @@
               <p class="card-text">
                 <!--ログインしている場合-->
                 <% if user_signed_in? %>
-                <span id="favorite_buttons_<%= recipe.id %>">
+                <div id="favorite_buttons_<%= recipe.id %>">
                   <%= render "favorites/favorite", recipe: recipe %>
-                </span>
+                </div>
                 <!--ログインしていない場合-->
                 <% else %>
                   ♡<%= recipe.favorites.count %> いいね

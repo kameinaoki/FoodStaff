@@ -74,9 +74,9 @@
               </h5>
               <p class="card-text"><%= recipe.recipe_content %></p>
               <p class="card-text">
-                <span id="favorite_buttons_<%= recipe.id %>">
+                <div id="favorite_buttons_<%= recipe.id %>">
                   <%= render "favorites/favorite", recipe: recipe %>
-                </span>
+                </div>
               </p>
             </div>
           </div>

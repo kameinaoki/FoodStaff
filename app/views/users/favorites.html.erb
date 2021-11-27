@@ -20,9 +20,9 @@
                 <% end %>
               </h5>
               <p class="card-text">
-                <span id="favorite_buttons_<%= favorite_recipe.id %>">
+                <div id="favorite_buttons_<%= favorite_recipe.id %>">
                   <%= render "favorites/favorite", recipe: favorite_recipe %>
-                </span>
+                </div>
               </p>
               <p class="card-text"><small class="text-muted">投稿ユーザー：<%= favorite_recipe.user.name %></small></p>
               <p class="card-text">コメント件数：<%= favorite_recipe.recipe_comments.count %></p>

@@ -3,6 +3,15 @@
   
   <hr/>
   
+  <div>
+    <p class="text-center text-muted"><%= flash[:alert] %></p>
+  <!--  <p>-->
+  <!--    <% if @recipe.errors.any? %>-->
+  <!--      <%= @recipe.errors.count %>箇所、入力ミスがあるようです-->
+  <!--    <% end %>-->
+  <!--  </p>-->
+  <!--</div>-->
+  
   <div class="form">
     <%= form_with model:@recipe, url:recipes_path, local:true do |f| %>
       <%= f.hidden_field :id, :value => @recipe.id %>
