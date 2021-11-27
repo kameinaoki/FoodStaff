@@ -10,8 +10,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
     #byebug
-    @recipe.save
-    redirect_to recipe_path(@recipe.id)
+    if @recipe.save
+      redirect_to recipe_path(@recipe.id)
+    else
+      render :new
+    end
   end
 
   def index
