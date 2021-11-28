@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_14_013118) do
+ActiveRecord::Schema.define(version: 2021_11_28_072442) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_11_14_013118) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.string "profile_image_id", default: "", null: false
-    t.text "introduction", default: "", null: false
+    t.text "introduction", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
