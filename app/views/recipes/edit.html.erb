@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="text-center">レシピ編集</h2>
+
+  <hr/>
+
+  <div class="form">
+    <%= form_with model:@recipe, url:recipe_path, local:true do |f| %>
+
+      <div class="mt-5">
+        <%= attachment_image_tag @recipe, :recipe_image, :fill, 200, 200 %>
+      </div>
+
+      <div class="mt-5">
+        <p><strong>料理名</strong></p>
+        <%= f.text_field :cooking_name, class: 'form-control' %>
+      </div>
+
+      <div class="mt-5">
+        <p><strong>調理工程</strong></p>
+        <%= f.text_area :recipe_content, class: 'form-control' %>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3 mt-5 mx-auto">
+          <%= f.submit "投稿する", class: 'btn btn-info btn-sm btn-block my-2' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>

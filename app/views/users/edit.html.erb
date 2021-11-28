@@ -3,28 +3,32 @@
 
   <hr/>
 
-    <%= form_with model:@user, url:user_path, local:true do |f| %>
-      <!--ユーザー画像-->
-      <div class="mt-5">
-        <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg" %>
-        <%= f.attachment_field :profile_image %>
-      </div>
-
+  <%= form_with model:@user, url:user_path, local:true do |f| %>
+    <!--ユーザー画像-->
+    <div class="mt-5">
+      <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, fallback: "no_image.jpg" %>
+      <%= f.attachment_field :profile_image %>
+    </div>
+    
       <!--ユーザー名-->
+    <div class="mt-5">
+      <%= f.label :name, "ユーザー名" %>
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+    
       <div class="mt-5">
-        <%= f.label :name, "ユーザー名" %>
-        <%= f.text_field :name, autofocus: true, class: "form-control" %>
-      </div>
-
-      <div class="mt-5">
-        <%= f.label :introduction, "自己紹介" %><br />
-        <%= f.text_area :introduction, class: "form-control" %>
-      </div>
-
+      <%= f.label :introduction, "自己紹介" %><br />
+      <%= f.text_area :introduction, class: "form-control" %>
+    </div>
+    
       <!--投稿ボタン-->
-      <div class="mt-5 text-center">
-        <%= f.submit "変更を保存する", class: "btn btn-success" %>
-      </div>
-
-    <% end %>
+    <div class="mt-5 text-center">
+      <%= f.submit "変更を保存する", class: "btn btn-success" %>
+    </div>
+  <% end %>
+  
+  <div class="text-right">
+    <%= link_to "退会する", user_path(@user), method: :delete, class: "btn btn-danger" %>
+  </div>
+  
 </div>

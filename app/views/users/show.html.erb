@@ -2,9 +2,9 @@
   <h2 class="text-center">ユーザー詳細ページ</h2>
 
   <hr/>
-  
+
   <!--ユーザー情報-->
-  <div class="user-information">
+  <div class="my-5">
     <div class="card mb-3">
       <div class="row no-gutters">
         <div class="col-md-4">
@@ -17,44 +17,51 @@
               <small class="text-muted">～自己紹介～</small><br />
               <%= @user.introduction %>
             </p>
+            <hr/>
+            <p class="card-text">
+              <!--フォロー数-->
+              <%= link_to user_followings_path(@user) do %>
+                フォロー数：<%= @user.followings.count %>人
+              <% end %>
+              　|　
+              <!--フォロワー数-->
+              <%= link_to user_followers_path(@user) do %>
+                フォロワー数：<%= @user.followers.count %>人
+              <% end %>
+            </p>
+            <p class="card-text text-right">
+              <%= link_to "いいねした投稿一覧", favorites_user_path(@user) %>
+            </p>
           </div>
         </div>
       </div>
     </div>
     
-    
-    
-    
-    <% if current_user.following?(@user) %>
-      <%= link_to "フォロー外す", user_relationships_path(@user), class: "btn btn-danger", method: :delete %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(@user), class: "btn btn-primary", method: :post %>
-    <% end %>
-    <!--フォロー数-->
-    <p>
-      <%= link_to user_followings_path(@user) do %>
-        フォロー数：<%= @user.followings.count %>人
-      <% end %>
-    </p>
-    <!--フォロワー数-->
-    <p>
-      <%= link_to user_followers_path(@user) do %>
-        フォロワー数：<%= @user.followers.count %>人
-      <% end %>
-    </p>
-    
-    <%= link_to "いいねした投稿", favorites_user_path(@user) %>
-    
-    
+    <!--フォローボタン-->
+    <div class="row">
+      <div class="mx-auto">
+        <% if @user.id == current_user.id %>
+  　       <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-success" %>
+        <% else %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー外す", user_relationships_path(@user), class: "btn btn-danger", method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(@user), class: "btn btn-primary", method: :post %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+
+
+
   　<!--編集するボタン-->
-  　<% if @user.id == current_user.id %>
-  　  <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-success" %>
-  　<% end %>
+  　
   </div>
-  
+
   <hr/>
   <hr/>
-  
+
   <!--投稿レシピ一覧-->
   <h4 class="text-center">投稿したレシピ</h4>
     <% @recipes.each do |recipe| %>

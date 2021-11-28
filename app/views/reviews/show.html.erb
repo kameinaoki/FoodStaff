@@ -4,10 +4,10 @@
   <hr/>
 
   <div class="row">
-    <div class="card col-md-8 mx-auto">
+    <div class="card col-md-8 mx-auto mt-5">
       <!--商品画像-->
       <%= attachment_image_tag @review, :review_image, class: 'recipe-card-img' %>
-  
+      
       <div class="card-body">
         <!--商品名-->
         <p class="card-text text-center"><strong><%= @review.title %></strong></p>
@@ -45,6 +45,20 @@
       </div>
     </div>
   </div>
+  
+  <!--ログインユーザーの投稿だった場合-->
+  <% if @review.user_id == current_user.id %>
+    <div class="row justify-content-center my-5">
+      <!--編集ボタン-->
+      <div class="col-md-4 text-center">
+        <%= link_to "レビュー内容を編集する", edit_review_path(@review), class: "btn btn-success" %>
+      </div>
+      <!--削除ボタン-->
+      <div class="col-md-4 text-center">
+        <%= link_to "投稿を削除する", review_path(@review), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  <% end %>
 
 </div>
 

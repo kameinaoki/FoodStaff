@@ -4,7 +4,7 @@
   <hr/>
 
   <div class="row">
-    <div class="card col-md-8 mx-auto">
+    <div class="card col-md-8 mx-auto mt-5">
       <!--イメージ画像-->
       <%= attachment_image_tag @recipe, :recipe_image, class: 'recipe-card-img' %>
 
@@ -24,7 +24,6 @@
           </div>
         </p>
 
-
         <!--投稿ユーザー名-->
         <p class="card-text"><small class="text-muted">投稿ユーザー：
           <%= link_to user_path(@recipe.user_id) do %>
@@ -34,6 +33,20 @@
       </div>
     </div>
   </div>
+
+  <!--ログインユーザーの投稿だった場合-->
+  <% if @recipe.user_id == current_user.id %>
+    <div class="row justify-content-center my-5">
+      <!--編集ボタン-->
+      <div class="col-md-4 text-center">
+        <%= link_to "レシピ内容を編集する", edit_recipe_path(@recipe), class: "btn btn-success" %>
+      </div>
+      <!--削除ボタン-->
+      <div class="col-md-4 text-center">
+        <%= link_to "投稿を削除する", recipe_path(@recipe), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  <% end %>
 
   <hr/>
 

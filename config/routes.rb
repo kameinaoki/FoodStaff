@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   # レシピ
-  resources :recipes, only: [:new, :create, :index, :show, :destroy] do
+  resources :recipes, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :index, :destroy]
     resources :recipe_comments, only: [:new, :create, :destroy]
     # 検索機能用
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   # レビュー
-  resources :reviews, only: [:new, :create, :index, :show, :destroy]
+  resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 
   # 商品
   resources :items, only: [:index, :show, :destroy]

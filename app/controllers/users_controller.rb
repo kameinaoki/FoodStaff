@@ -23,6 +23,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path
   end
 
   def favorites
@@ -40,5 +43,5 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
+  
 end
