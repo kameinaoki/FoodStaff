@@ -4,32 +4,36 @@
   <hr/>
   
   <div class="favorites">
-    <% @favorite_recipes.each do |favorite_recipe| %>
-      <div class="card mb-3">
-        <div class="row no-gutters">
-           <div class="col-md-4">
-            <%= link_to recipe_path(favorite_recipe) do %>
-              <%= attachment_image_tag favorite_recipe, :recipe_image, class: 'recipe-card-img' %>
-            <% end %>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">
-                <%= link_to recipe_path(favorite_recipe) do %>
-                  <p><%= favorite_recipe.cooking_name %></p>
-                <% end %>
-              </h5>
-              <p class="card-text">
-                <div id="favorite_buttons_<%= favorite_recipe.id %>">
-                  <%= render "favorites/favorite", recipe: favorite_recipe %>
-                </div>
-              </p>
-              <p class="card-text"><small class="text-muted">投稿ユーザー：<%= favorite_recipe.user.name %></small></p>
-              <p class="card-text">コメント件数：<%= favorite_recipe.recipe_comments.count %></p>
+    <% if @favorite_recipes.present? %>
+      <% @favorite_recipes.each do |favorite_recipe| %>
+        <div class="card mb-3">
+          <div class="row no-gutters">
+             <div class="col-md-4">
+              <%= link_to recipe_path(favorite_recipe) do %>
+                <%= attachment_image_tag favorite_recipe, :recipe_image, class: 'recipe-card-img' %>
+              <% end %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= link_to recipe_path(favorite_recipe) do %>
+                    <p><%= favorite_recipe.cooking_name %></p>
+                  <% end %>
+                </h5>
+                <p class="card-text">
+                  <div id="favorite_buttons_<%= favorite_recipe.id %>">
+                    <%= render "favorites/favorite", recipe: favorite_recipe %>
+                  </div>
+                </p>
+                <p class="card-text"><small class="text-muted">投稿ユーザー：<%= favorite_recipe.user.name %></small></p>
+                <p class="card-text">コメント件数：<%= favorite_recipe.recipe_comments.count %></p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
+    <% else %>
+      <p>いいねした投稿はありません</p>
     <% end %>
   </div>
   
